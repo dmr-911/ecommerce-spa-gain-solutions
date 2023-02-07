@@ -3,8 +3,6 @@ import Image from "next/image";
 import React, { useState } from "react";
 import { useFilterContext } from "./context/FilterContextProvider";
 
-const filters = ["All Products", "Best Value", "Best Camera"];
-
 const colorClasses = [
   "border-[#DD9E10] bg-[#e0d9c7] text-[#DD9E10]",
   "border-[#874C72] bg-[#d3aac5]/70 text-[#874C72]",

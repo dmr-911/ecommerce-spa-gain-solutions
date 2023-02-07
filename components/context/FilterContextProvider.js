@@ -1,9 +1,7 @@
 import React, {
   createContext,
-  useContext,
   useEffect,
-  useReducer,
-  useState,
+  useReducer
 } from "react";
 import { products } from "@/data/products";
 import filterReducer from "@/reducer/filterReducer";
@@ -26,7 +24,7 @@ export const FilterContextProvider = ({ children }) => {
   };
 
   // to sort the product
-  
+
   useEffect(() => {
     dispatch({ type: "FILTER_PRODUCTS" });
     dispatch({ type: "SORTING_PRODUCTS", payload: products });

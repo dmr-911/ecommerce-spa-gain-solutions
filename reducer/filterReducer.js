@@ -7,7 +7,7 @@ const filterReducer = (state, action) => {
         all_products: [...action.payload],
       };
 
-      // get and set data from DOM
+    // get and set data from DOM
     case "GET_SORT_VALUE":
       let userSortValue = document.getElementById("sort");
       let sort_value = userSortValue.options[userSortValue.selectedIndex].value;
@@ -32,11 +32,35 @@ const filterReducer = (state, action) => {
         const bestValue = tempSortProduct.sort(
           (a, b) => a.phone_price - b.phone_price
         );
-        
+
         return {
           ...state,
-          filter_products : bestValue
-        }
+          filter_products: bestValue,
+        };
+      }
+
+      if (state.sorting_value === "Best Camera") {
+        const newProducts = tempSortProduct.filter((product) =>
+          product.speciality.find((p) => p.includes("Excellent back camera"))
+        );
+
+        return {
+          ...state,
+          filter_products: newProducts,
+        };
+      }
+
+      if (state.sorting_value === "Best Performance") {
+        const sortedProducts = tempSortProduct.filter((product) =>
+          product.speciality.find((p) =>
+            p.includes("Smooth high-end gaming experience")
+          )
+        );
+
+        return {
+          ...state,
+          filter_products: sortedProducts,
+        };
       }
 
     default:
