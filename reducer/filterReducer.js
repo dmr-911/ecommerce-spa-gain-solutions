@@ -7,7 +7,7 @@ const filterReducer = (state, action) => {
         all_products: [...action.payload],
       };
 
-    // get and set data from DOM
+    // get and set data from DOM using select id
     case "GET_SORT_VALUE":
       let userSortValue = document.getElementById("sort");
       let sort_value = userSortValue.options[userSortValue.selectedIndex].value;
@@ -51,11 +51,13 @@ const filterReducer = (state, action) => {
       }
 
       if (state.sorting_value === "Best Performance") {
-        const sortedProducts = tempSortProduct.filter((product) =>
-          product.speciality.find((p) =>
-            p.includes("Smooth high-end gaming experience")
+        const sortedProducts = tempSortProduct
+          .filter((product) =>
+            product.speciality.find((p) =>
+              p.includes("Smooth high-end gaming experience")
+            )
           )
-        );
+          .sort((a, b) => b.phone_price - a.phone_price);
 
         return {
           ...state,
