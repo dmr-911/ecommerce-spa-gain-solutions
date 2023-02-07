@@ -5,6 +5,15 @@ import { BsChevronDown } from "react-icons/bs";
 
 const filters = ["All Products", "Best Value", "Best Camera"];
 
+const colorClasses = [
+  "border-[#DD9E10] bg-[#e0d9c7] text-[#DD9E10]",
+  "border-[#874C72] bg-[#d3aac5]/70 text-[#874C72]",
+  "border-[#11A0DB] bg-[#cfdfe6] text-[#11A0DB]",
+  "border-[#DD9E10] bg-[#e0d9c7] text-[#DD9E10]",
+  "border-[#874C72] bg-[#d3aac5]/70 text-[#874C72]",
+  "border-[#11A0DB] bg-[#cfdfe6] text-[#11A0DB]",
+];
+
 const AllProducts = () => {
   const [filterActive, setFilterActive] = useState(false);
   const [activeFilterOption, setActiveFilterOption] = useState("All Products");
@@ -105,7 +114,7 @@ const AllProducts = () => {
               {product.speciality.map((tag, i) => (
                 <span
                   key={i}
-                  className="border-2 border-[#874C72] h-6 rounded px-1 bg-[#d3aac5]/70 text-[#874C72]"
+                  className={`border-2 ${colorClasses[i]} xl:h-6 rounded px-1`}
                 >
                   {tag}
                 </span>
