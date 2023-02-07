@@ -29,9 +29,15 @@ const filterReducer = (state, action) => {
       }
 
       if (state.sorting_value === "Best Value") {
-        const bestValue = tempSortProduct.sort(
-          (a, b) => a.phone_price - b.phone_price
-        );
+        const bestValue = tempSortProduct
+          .filter(
+            (product) =>
+              product.phone_price <= 20000 &&
+              parseFloat(product.phone_details.internal_storage) >= 64 &&
+              parseFloat(product.phone_details.ram) >= 4 &&
+              (product.brand === "Xiaomi" || product.brand === "Realme")
+          )
+          .sort((a, b) => b.phone_price - a.phone_price);
 
         return {
           ...state,
@@ -40,8 +46,16 @@ const filterReducer = (state, action) => {
       }
 
       if (state.sorting_value === "Best Camera") {
-        const newProducts = tempSortProduct.filter((product) =>
-          product.speciality.find((p) => p.includes("Excellent back camera"))
+        const newProducts = tempSortProduct.filter(
+          (product) =>
+            parseFloat(
+              product?.phone_details?.mainCamera?.split(",")[0]?.split(" ")[0]
+            ) >= 16 &&
+            parseFloat(
+              product?.phone_details?.selfieCamera?.split(",")[0]?.split(" ")[0]
+            ) >= 13 &&
+            parseFloat(product.phone_details.internal_storage) >= 64 &&
+            product?.phone_details.external
         );
 
         return {
@@ -52,10 +66,15 @@ const filterReducer = (state, action) => {
 
       if (state.sorting_value === "Best Performance") {
         const sortedProducts = tempSortProduct
-          .filter((product) =>
-            product.speciality.find((p) =>
-              p.includes("Smooth high-end gaming experience")
-            )
+          .filter(
+            (product) =>
+              product?.phone_details.chipset
+                .toLowerCase()
+                .includes("snapdragon") &&
+              product.phone_price > 20000 &&
+              parseFloat(product.phone_details.internal_storage) > 128 &&
+              parseFloat(product.phone_details.ram) >= 4 &&
+              product?.speciality.find(spc => spc.toLowerCase().includes("1080p"))
           )
           .sort((a, b) => b.phone_price - a.phone_price);
 

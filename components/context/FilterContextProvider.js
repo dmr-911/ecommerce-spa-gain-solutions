@@ -24,13 +24,12 @@ export const FilterContextProvider = ({ children }) => {
   };
 
   // to sort the product
-
   useEffect(() => {
     dispatch({ type: "FILTER_PRODUCTS" });
     dispatch({ type: "SORTING_PRODUCTS", payload: products });
   }, [products, state.sorting_value]);
 
-  // to load all the products for grid and list view
+  // to load all the products
   useEffect(() => {
     dispatch({ type: "LOAD_FILTER_PRODUCTS", payload: products });
   }, [products]);
