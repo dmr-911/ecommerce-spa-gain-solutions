@@ -31,8 +31,8 @@ const AllProducts = () => {
       {/* Main body */}
       <main className="default-margin mx-auto">
         {/* Filter container */}
-        <div className="flex justify-between">
-          <p className="text-[#575757] text-2xl font-bold leading-9">
+        <div className="flex flex-col md:flex-row justify-between">
+          <p className="text-[#575757] text-2xl font-bold leading-9 mb-4 md:mb-0">
             All Products
           </p>
           <div className="flex gap-2 items-center">
@@ -77,7 +77,7 @@ const AllProducts = () => {
           >
             <div className="item1 col-span-4 flex gap-4">
               {/* Image section */}
-              <div className="h-20 w-20 relative">
+              <div className="h-2/3 md:h-20 w-20 relative overflow-hidden">
                 <Image src={product.phone_images[0]} alt="phone" fill />
               </div>
               {/* Phone name and brand section */}
