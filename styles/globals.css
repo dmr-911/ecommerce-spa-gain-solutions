@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+body{
+    overflow-x: hidden;
+}
+
 .default-margin {
-    @apply mx-28
+    @apply mx-4 md:mx-28
 }

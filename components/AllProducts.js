@@ -1,7 +1,7 @@
 import { products } from "@/data/products";
 import Image from "next/image";
 import React, { useState } from "react";
-import { useFilterContext } from "./context/FilterContextProvider";
+import { useFilterContext } from "../context/FilterContextProvider";
 
 const colorClasses = [
   "border-[#DD9E10] bg-[#e0d9c7] text-[#DD9E10]",
@@ -10,6 +10,8 @@ const colorClasses = [
   "border-[#DD9E10] bg-[#e0d9c7] text-[#DD9E10]",
   "border-[#874C72] bg-[#d3aac5]/70 text-[#874C72]",
   "border-[#11A0DB] bg-[#cfdfe6] text-[#11A0DB]",
+  "border-[#11A0DB] bg-[#cfdfe6] text-[#11A0DB]",
+  "border-[#DD9E10] bg-[#e0d9c7] text-[#DD9E10]",
 ];
 
 const AllProducts = () => {
