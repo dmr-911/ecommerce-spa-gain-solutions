@@ -1,6 +1,6 @@
 import { products } from "@/data/products";
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useFilterContext } from "../context/FilterContextProvider";
 
 const colorClasses = [
@@ -19,12 +19,32 @@ const AllProducts = () => {
 
   const [filterActive, setFilterActive] = useState(false);
   const [activeFilterOption, setActiveFilterOption] = useState("All Products");
+  const [offset, setOffset] = useState(20);
+
+  const limit = 20;
 
   // filter option click method
   const handleOptionSelect = (option) => {
     setActiveFilterOption(option);
     setFilterActive(false);
   };
+
+  // unlimited scroll
+  const handleScroll = () => {
+    if (
+      window.innerHeight + document.documentElement.scrollTop ===
+      document.documentElement.offsetHeight
+    ) {
+      setOffset((prevOffset) => prevOffset + limit);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   return (
     <div className="text-[#74777B]">
@@ -70,14 +90,14 @@ const AllProducts = () => {
         </div>
 
         {/* Product details */}
-        {filter_products.map((product, i) => (
+        {filter_products.slice(0, offset).map((product, i) => (
           <div
             key={product._id}
             className="grid-container grid grid-cols-12 mb-6"
           >
             <div className="item1 col-span-4 flex gap-4">
               {/* Image section */}
-              <div className="h-2/3 md:h-20 w-20 relative overflow-hidden">
+              <div className="min-h-[1.5rem] h-full w-40 md:w-20 relative overflow-hidden">
                 <Image src={product.phone_images[0]} alt="phone" fill />
               </div>
               {/* Phone name and brand section */}
