@@ -72,7 +72,7 @@ const AllProducts = () => {
                     filterActive
                       ? "bg-[#0095A0] text-white border-transparent"
                       : "bg-white"
-                  } hover:text-white px-4 py-2 cursor-pointer flex items-center gap-2 hover:bg-[#0095A0] transition-all duration-150`}
+                  } hover:text-white px-4 py-2 cursor-pointer flex items-center gap-2 focus:outline-none  hover:bg-[#0095A0] transition-all duration-150`}
                   onClick={sorting}
                 >
                   <option value="All Products">All Products</option>
