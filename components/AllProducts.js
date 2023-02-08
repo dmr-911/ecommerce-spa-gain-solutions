@@ -2,6 +2,7 @@ import { products } from "@/data/products";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { useFilterContext } from "../context/FilterContextProvider";
+import ImageModal from "./ImageModal";
 
 const colorClasses = [
   "border-[#DD9E10] bg-[#e0d9c7] text-[#DD9E10]",
@@ -20,6 +21,9 @@ const AllProducts = () => {
   const [filterActive, setFilterActive] = useState(false);
   const [activeFilterOption, setActiveFilterOption] = useState("All Products");
   const [offset, setOffset] = useState(20);
+  // Modal states
+  const [showModal, setShowModal] = useState(false);
+  const [modalImages, setModalImages] = useState([]);
 
   const limit = 20;
 
@@ -97,7 +101,13 @@ const AllProducts = () => {
           >
             <div className="item1 col-span-4 flex gap-4">
               {/* Image section */}
-              <div className="min-h-[1.5rem] h-full w-40 md:w-20 relative overflow-hidden">
+              <div
+                className="min-h-[1.5rem] h-full w-40 md:w-20 relative overflow-hidden cursor-pointer"
+                onClick={() => {
+                  setModalImages(product.phone_images);
+                  setShowModal(true);
+                }}
+              >
                 <Image src={product.phone_images[0]} alt="phone" fill />
               </div>
               {/* Phone name and brand section */}
@@ -136,6 +146,12 @@ const AllProducts = () => {
           </div>
         ))}
       </main>
+      {/* Modal */}
+      <ImageModal
+        showModal={showModal}
+        setShowModal={setShowModal}
+        images={modalImages}
+      />
     </div>
   );
 };
